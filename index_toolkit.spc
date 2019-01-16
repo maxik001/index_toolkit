@@ -10,4 +10,15 @@ create or replace package index_toolkit is
     v_columns varchar2
   ) return varchar2;
 
+  procedure make_unused(
+    v_schema all_tables.owner%type,
+    v_index_list varchar2
+  );
+  
+  procedure make_rebuild(
+    v_schema all_tables.owner%type,
+    v_index_list varchar2,
+    v_flag_parallel BOOLEAN default FALSE
+  );
+
 end index_toolkit;
