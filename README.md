@@ -11,12 +11,12 @@ declare
 
   v_index_list varchar2(4000);
 begin
-	-- Get list of indexes separated by commas which relate to selected columns
-	v_index_list := index_toolkit.get_index_list(v_schema, v_table, v_columns);
-    dbms_output.put_line(v_index_list);
+  -- Get list of indexes separated by commas which relate to selected columns
+  v_index_list := index_toolkit.get_index_list(v_schema, v_table, v_columns);
+  dbms_output.put_line(v_index_list);
   
-	index_toolkit.make_unused('gmo', v_index_list);
-    index_toolkit.make_rebuild('gmo', v_index_list, TRUE); -- True-tell to use parallel index rebuild
+  index_toolkit.make_unused('gmo', v_index_list);
+  index_toolkit.make_rebuild('gmo', v_index_list, TRUE); -- True-tell to use parallel index rebuild
 exception
   when others then
     dbms_output.put_line('error: ' || dbms_utility.format_error_stack);
